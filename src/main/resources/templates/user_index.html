@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Valuuta vahetus</title>
+
+</head>
+<body>
+
+    <div id="react"></div>
+
+    <script src="built/bundle.js"></script>
+
+
+    <form action="#" th:object="${Dto}"  method="post" >
+        <h1> Valuuta vahetus</h1>
+        <p>
+            <label>
+                <select class="drop" th:field="*{valitudValuuta}">
+                    <option th:value="${null}"> Vali...</option>
+                    <option
+                            th:each="s: ${valuutad}"
+                            th:text="${s.getNimi()}"
+                            th:value="${s.getId()}"
+                    />
+                </select>
+            </label>
+        </p>
+
+        <p>
+            <input th:field="*{vahetus}">
+        </p>
+
+        <p>
+            <button type="submit" th:action="@{/exchange}" th:formaction="'/exchangeFromEur'" >
+                euro to selected
+            </button>
+            <button type="submit" th:action="@{/exchange}" th:formaction="'/exchangeToEur'">
+                selected ro euro
+            </button>
+        </p>
+
+        <p th:value="*{tulemus}" th:text="*{tulemus}">
+
+        </p>
+
+        <p>
+            <button type="reset">
+                tühjenda
+            </button>
+        </p>
+
+    </form>
+
+</body>
+</html>
